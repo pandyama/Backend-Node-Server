@@ -7,7 +7,7 @@ const axios = require('axios');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-var apiKey = '0fe37647bf3c4095418a1c5392bb60cc';
+var apiKey = 'GET YOUR OWN KEY';
 
 var options = {
     host: 'api.openweathermap.org',
@@ -53,13 +53,13 @@ exports.weather = function(query, callback){
     options.path = '/data/2.5/weather?q='+city+'&appid='+apiKey;
     var forecast = [];
 
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0fe37647bf3c4095418a1c5392bb60cc`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=GET YOUR OWN KEY`)
         .then(res => {
             lat = res.data.coord.lat;
             lon = res.data.coord.lon;
             
 
-            axios.get(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=0fe37647bf3c4095418a1c5392bb60cc`)
+            axios.get(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=GET YOUR OWN KEY`)
                 .then(res =>{
                     var test2 = [];                   
                     test2.push(res.data.current.weather[0].id);
