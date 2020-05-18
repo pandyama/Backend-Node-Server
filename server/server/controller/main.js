@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 const http = require('https');
 var app = express();
 const axios = require('axios');
+const circular = require('circular-json');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -118,3 +119,22 @@ exports.weather = function(query, callback){
             console.log(err);
         })
 }
+
+
+exports.gitusers = function(query, callback){
+
+    user = query.headers.user;
+
+    axios.get(`https://api.github.com/users/${user}/repos`)
+        .then(res => {
+            console.log(res);
+            //callback.send("Meet");
+            //console.log(JSON.parse(res));
+            callback.send(circular.stringify(res.data));
+            //callback.send(JSON.parse(JSON.stringify(res)));
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+

@@ -9,4 +9,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/weather', main_controller.weather);
 
+router.get('/gitusers', main_controller.gitusers);
+
 module.exports = router;
